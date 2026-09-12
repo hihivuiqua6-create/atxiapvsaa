@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ppp-core-api
+    runtime: python
+    plan: free
+    rootDir: server-python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: DATA_DIR
+        value: /tmp/ppp-data
